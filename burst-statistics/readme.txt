@@ -1,12 +1,12 @@
 === Burst Statistics - Privacy-Friendly Analytics for WordPress ===
-Contributors: hesseldejong, RogierLankhorst, aahulsebos, leonwimmenhoeve
+Contributors: hesseldejong, RogierLankhorst
 Donate link: paypal.me/Burststatistics
 Tags: statistics, analytics, stats, analytics alternative
-Requires at least: 6.2
+Requires at least: 6.4
 License: GPL2
-Requires PHP: 7.4
-Tested up to: 6.8
-Stable tag: 2.2.7
+Requires PHP: 8.0
+Tested up to: 6.9
+Stable tag: 3.1.6
 
 Self-hosted, privacy-friendly stats for WordPress. Simple interface, no setup. Get detailed analytics with Burst Statistics.
 
@@ -97,11 +97,87 @@ Absolutely! Both free and premium plugin can be managed with composer. Read the 
 We value your feedback. You can [submit a support request on the WordPress forums](https://wordpress.org/support/plugin/burst-statistics/), and we will respond promptly.
 
 == Change log ==
+= 3.1.6 =
+* January 20th 2026
+* Fix: deleting old data in archive functionality not working due to incorrect SQL syntax.
+* Fix: Not filtering browser/OS data by device on the insights block, props @alisontaylorbc.
+* Improvement: add automated test for data deletion.
+* Improvement: add persistent sorting to datatable block, props @ankush.
+* Improvement: filtering by continent.
+
+= 3.1.5 =
+* January 7th 2026
+* Improvement: auto close notices in the right bottom of the screen.
+* Improvement: some minor mobile responsiveness improvements.
+* Improvement: extend automated tests with live visitors test.
+* Improvement: wrapping of long URLs in live visitors view.
+* Improvement: extended PHPCS coverage.
+* Fix: when the browser's local storage is full, adding filters could cause an error.
+* Fix: enforce https on combined variables and scripts URL, to prevent mixed content warnings.
+* Fix: onboarding for RTL languages tried to load non existing RTL CSS file.
+
+= 3.1.4 =
+* December 23rd 2025
+* Improvement: styling of datatable blocks and loading states.
+* Improvement: referrer query performance improvements.
+* Improvement: parameter query performance improvements.
+* Improvement: exclude track hit over Rest Api from the Burst Rest Api Optimizer, this way all plugins are loaded during the hit, which is required for hook goals.
+* Improvement: added fallback to default method for combine variables and scripts, in case the uploads directory is not writable.
+* Improvement: the 'cron not running' notice not dismissible anymore, as it is a critical issue.
+* Improvement: allow search for formatted data on datatables, e.g. you can now search for 'United States' instead of US on the locations datatable.
+* Improvement: add parameter filtering.
+* Fix: filtering on devices block.
+
+= 3.1.0.3 =
+* December 1st
+* Fix: saving settings changes after saving initial changes required a reload.
+* Performance: Performance improvements by offloading resource greedy processes during tracking to cron in batches
+* Improvement: User Agent Parser improvements, removing invalid browsers
+* Fix: dropdown for advanced filters not filtering the list.
+* Fix: undefined tab caused by incomplete removal of sales menu when no WooCommerce or EDD detected.
+* Fix: object caching on page counts causing slow update of page counts, props @fveits
+
+= 3.0.2 =
+* November 25th 2025
+* Fix: some notices were incorrectly dismissed during validation.
+* Improvement: added automated test for hook goals.
+* Improvement: added automated test for archiving restoration.
+
+= 3.0.0 =
+* November 11th 2025
+* Fix: compability with unknown plugin, allowing null value in get_timerange_dropdown() on WooCommerce products overview, props @tegid
+* Fix: do not treat www and non www domains as different domains, when detecting multiple domains setup.
+* Fix: remove obsolete slash in loading of goals script, which on some setups causes it to get blocked, props @jhndkrvzc
+* Fix: top bar count did not show the 'k' for thousands, 'M' for millions, etc, only showing 1, instead of 1k.
+* New: increase minimal required versions for PHP to 8.0, for WordPress to 6.4
+
+= 2.2.9.3 =
+* Fix: some css styling fixed.
+
+= 2.2.9.2 =
+* Improvement: css change to ensure Burst icon aligned correctly in menu
+* Improvement: remove obsolete log line
+* Improvement: remove upgrader_process_complete hook to handle upgrades
+* Improvement: removed some obsolete files
+
+= 2.2.9.1 =
+* Improvement: Date range selection option in pages and posts overview screen options.
+* Fix: issue in onboarding wizard data storing.
+
+= 2.2.9 =
+* Fix: move the code directory from /src to /includes, because otherwise javascript files are not scanned for translations by WordPress
+
+= 2.2.8 =
+* New: improved library for cookieless tracking.
+* New: entry/exit pages filter
+* Improvement: added fallback database upgrade mechanism in case the normal upgrade didn't fire.
+* Improvement: dismissal of PHP notice.
+
 = 2.2.7 =
 * New: Detailed live visitors tab
 * Improvement: responsiveness on mobile, restored 1280px breakpoint
 * Improvement: suspicious data (over 1000 visits from 1 user) is now only detected and the admin notified, not automatically removed.
-* Fix: on multisite with Burst network activated, the endpoint incorrectly did not detect Burst as active, which prevents tracking from occurring.
+* Fix: on multisite with Burst network activated, the endpoint incorrectly did not detect Burst as active, which prevents tracking from occuring.
 
 = 2.2.6.1 =
 * Fix: remove false positive notice about missing tables.
@@ -112,85 +188,6 @@ We value your feedback. You can [submit a support request on the WordPress forum
 * Improvement: made it possible to track hook goals with cookieless tracking.
 * Improvement: migrated all remaining css to tailwind css.
 * Fix: Group by on parameters overview should group by combination of parameter and value.
-
-= 2.2.5 =
-* Fix: incorrect calculation of bounces and bounce rate.
-* Fix: upgrade link on archiving not working.
-
-= 2.2.4 =
-* New: debug information in Site Health Info.
-* New: wildcard filtering on page URL in advanced filters, by adding an asterisk behind your string.
-* Improvement: check in endpoint if Burst is still active, for situations where javascript is still active, due to caching, but plugin not active.
-* Improvement: catch incorrect data structure on hit, for situations where previous javascript is still active due to caching.
-* Improvement: larger selection of Tips & Tricks retrieved from website, showing a variety of different and more up to date articles.
-* Improvement: performance optimizations.
-* Fix: when statistics table is empty, the summary table upgrade could fail on an empty value for "first visit", props @programmin.
-* Fix: catch edge case where a theme passes a null value to the "the_content" filter (which is incorrect behaviour). props @sllew.
-* Fix: incorrect bounce calculation, resulting in too high bounces and bounce rates.
-
-= 2.2.3 =
-* Improvement: allow ipv6 addresses
-* Improvement: prevent false positives on ajax fallback notice
-* Improvement: rest optimizer improvements
-
-= 2.2.2 =
-* New: Extensive range of filter options to easily track what campaigns are delivering your conversions!
-* Improvement: Added CORS support to tracking endpoint to allow cross-origin requests via fetch/sendBeacon. props Alex
-* Improvement: automatic cleanup of anomalous numbers of visits, when one visitor results in over 1000 page views in 24 hours (customizable with filters).
-* Improvement: remove duplicate non necessary json_encode from endpoint
-* Improvement: Add logging option to check error responses on the endpoint or rest api, when BURST_DEBUG and WP_DEBUG are set to true.
-* Fix: when the weekly statistics report was sent on another day than the default day, date range calculation could retrieve the wrong range. props Pieter
-* Fix: Referrer filter not working. props @lekkerbezig
-* Fix: allow for alternative WordPress location, e.g. in subfolder 'wp'.
-
-= 2.2.1 =
-* Fix: usage of wrong key prevented upgrade from completing
-
-= 2.2.0 =
-* New: extended range of shortcodes.
-* New: goal element preview to check if the selected element exists on the page.
-* Improvement: moved all hooks from constructor to init method.
-* Improvement: remove bounce=0 conditions on goal filtering
-* Fix: Integrations not loading due to path change in 2.0.
-* Fix: First time visits counting duplicates for visitors on cookieless tracking when they came back after a month.
-* Fix: multisite redirect to network, but should redirect to main site, props @muttleydosomething
-
-= 2.1.0 =
-* Fix: type mismatch when browser key is not in the user agent data.
-* New: Onboarding wizard for new users.
-
-= 2.0.9 =
-* Fix: incorrect "best device" conversion rate on the goals block.
-* Fix: when running tasks validation, summary warning call caused an error, due to wrong call.
-* Improvement: allow null value in admin_enqueue_scripts to prevent Visual Composer causing fatal error.
-* Improvement: changed plugin_url value to use site_url instead of get_plugin_url() to prevent mixed content.
-
-= 2.0.8 =
-* Fix: filtering by referrer not working.
-* Fix: Dashboard submenu link only working when the Burst settings page was already loaded.
-
-= 2.0.7 =
-* Fix: in some cases a php warning could be shown on the endpoint.
-* Improvement: drop option for administrators to send an email report by adding a query variable.
-* Improvement: improved efficiency of burst_find_wordpress_base_path() function.
-
-= 2.0.6 =
-* Improvement: optimized database upgrade.
-* New: rewritten plugin for even better performance
-* New: extended range of automated tests to increase reliability
-
-= 1.8.0.1 =
-* Fix: Goals block details not showing correct data.
-* Fix: Click goals not always tracking correctly.
-
-= 1.8.0 =
-* Improvement: add a fallback to allow for servers with a very small bytes limit on indexes.
-* Improvement: restructured the way tasks are stored.
-* Improvement: dropped load_plugin_textdomain, as it is not necessary anymore.
-* Improvement: the way the visits count on the pages and posts overview is tracked is changed, to better stay in sync with the page visits within Burst itself.
-* Fix: A dismissible task like the new email reports upgrade notice stayed in the “remaining tasks” section.
-* Fix: predefined goals were not loading due to changes in translation structure within WordPress.
-* Fix: on track_updates, empty values were not cleaned up correctly, possibly leading to rows with empty devices and browsers.
 
 == Upgrade notice ==
 * Please backup before upgrading.
