@@ -52,6 +52,16 @@ return [
 		'dismissible' => true,
 	],
 	[
+		'id'          => 'join-discord',
+		'condition'   => [
+			'type' => 'activation',
+		],
+		'msg'         => __( 'Join the Burst community on Team Updraft Discord to discuss features, get help, and shape the future of Burst.', 'burst-statistics' ),
+		'url'         => 'https://discord.gg/jCC7GD59nS',
+		'icon'        => 'completed',
+		'dismissible' => true,
+	],
+	[
 		'id'          => 'ecommerce_integration',
 		'msg'         => __( 'New in Burst Pro: dedicated sales dashboard for WooCommerce and Easy Digital Downloads.', 'burst-statistics' ),
 		'icon'        => 'new',
