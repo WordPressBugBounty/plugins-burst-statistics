@@ -6,7 +6,7 @@ Requires at least: 6.6
 License: GPL2
 Requires PHP: 8.0
 Tested up to: 7.0
-Stable tag: 3.5.1
+Stable tag: 3.6.0
 
 Simple, lightweight WordPress analytics with privacy-friendly visitor tracking. Cookieless and GDPR-ready. Setup in seconds, no cookie banner needed.
  
@@ -200,7 +200,11 @@ Browse the full [Learn hub](https://burst-statistics.com/learn/?utm_source=wordp
 That's it. No external accounts. No tracking codes to paste. Burst starts collecting site stats immediately.
  
 Prefer installing manually or via Composer? See [installing Burst Statistics with Composer](https://burst-statistics.com/installing-burst-statistics-with-composer/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=burst-readme&utm_content=install-composer).
- 
+
+= Credits =
+
+Country-level geographic data is provided by the MaxMind GeoLite2 database. This product includes GeoLite2 Data created by MaxMind, available from https://www.maxmind.com/.
+
 == Frequently Asked Questions ==
  
 = Is Burst Statistics really free? =
@@ -277,16 +281,41 @@ We value your feedback. You can [submit a support request on the WordPress forum
  
 
 == Change log ==
+= 3.6.0 =
+* July 1st 2026
+* New: country-level geolocation (GeoIP country tracking) is now available in the free plugin.
+* New: WordPress Search Terms block: see what your visitors are looking for on your site.
+* New: "All goals" option in the dashboard Goals block.
+* New: AI Chat model selector: select your preferred model.
+* New: WP Consent API notice task that detects whether the Consent API is active.
+* Improvement: redesigned, unified tooltips with theme-consistent styling, high-contrast borders and improved readability.
+* Improvement: rows-per-page selection is now persisted per datatable.
+* Improvement: MaxMind GeoLite2 attribution.
+* Improvement: query and database performance improvements.
+* Improvement: updated bundled libraries.
+* Fix: prevent errors caused by the external link tracking class loading on the free plugin.
+* Fix: check open_basedir restrictions on the session save path to prevent warnings.
+* Fix: date picker and Reading Engagement UI layout, stacking, overflow and scroll-lock issues on mobile and tablet.
+* Fix: country database tracking lookup on fresh installs and correct resolution of country placeholder rows.
+* Fix: browser detection cleanup.
+
 = 3.5.1 =
 * June 17th 2026
 * New: Reading Engagement statistics block.
+* New: Pro forms tracking.
 * New: Custom CSS block.
+* Improvement: store product IDs as integers in the ecommerce cart and order tables for smaller, faster joins.
 * Improvement: use native date types and right-sized columns for the report tables.
+* Improvement: removed duplicate database indexes on the subscription, orders and report tables to speed up inserts and updates.
 * Improvement: added outgoing links, search terms, and forms to the Abilities API.
 * Improvement: query data performance and accuracy improvements.
+* Improvement: overwrite the free plugin's tracking script with the premium version during upgrade.
+* Improvement: more robust report email delivery.
 * Fix: container queries and various UI/UX improvements.
+* Fix: mobile responsiveness for the funnel.
 * Fix: report localization, adding locale handling in report configuration and formatting.
 * Fix: use ISO-8601 weekday numbers so report scheduling does not break on other locales.
+* Fix: generalize the GeoIP database type check to support commercial GeoIP2-City databases without triggering mismatch overwrites.
 
 = 3.5.0 =
 * June 3rd 2026
@@ -416,6 +445,29 @@ We value your feedback. You can [submit a support request on the WordPress forum
 * Improvement: allow search for formatted data on datatables, e.g. you can now search for 'United States' instead of US on the locations datatable.
 * Improvement: add parameter filtering.
 * Fix: filtering on devices block.
+
+= 3.1.0.3 =
+* December 1st
+* Fix: saving settings changes after saving initial changes required a reload.
+* Performance: Performance improvements by offloading resource greedy processes during tracking to cron in batches
+* Improvement: User Agent Parser improvements, removing invalid browsers
+* Fix: dropdown for advanced filters not filtering the list.
+* Fix: undefined tab caused by incomplete removal of sales menu when no WooCommerce or EDD detected.
+* Fix: object caching on page counts causing slow update of page counts, props @fveits
+
+= 3.0.2 =
+* November 25th 2025
+* Fix: some notices were incorrectly dismissed during validation.
+* Improvement: added automated test for hook goals.
+* Improvement: added automated test for archiving restoration.
+
+= 3.0.0 =
+* November 11th 2025
+* Fix: compability with unknown plugin, allowing null value in get_timerange_dropdown() on WooCommerce products overview, props @tegid
+* Fix: do not treat www and non www domains as different domains, when detecting multiple domains setup.
+* Fix: remove obsolete slash in loading of goals script, which on some setups causes it to get blocked, props @jhndkrvzc
+* Fix: top bar count did not show the 'k' for thousands, 'M' for millions, etc, only showing 1, instead of 1k.
+* New: increase minimal required versions for PHP to 8.0, for WordPress to 6.4
 
 == Upgrade notice ==
 * Please backup before upgrading.
