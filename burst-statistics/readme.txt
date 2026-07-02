@@ -6,7 +6,7 @@ Requires at least: 6.6
 License: GPL2
 Requires PHP: 8.0
 Tested up to: 7.0
-Stable tag: 3.6.0
+Stable tag: 3.6.0.1
 
 Simple, lightweight WordPress analytics with privacy-friendly visitor tracking. Cookieless and GDPR-ready. Setup in seconds, no cookie banner needed.
  
@@ -281,23 +281,27 @@ We value your feedback. You can [submit a support request on the WordPress forum
  
 
 == Change log ==
+= 3.6.0.1 =
+* July 2nd 2026
+* Fix: cleaned up an unused Pro-only setting that remained on some free installs. This had no effect on tracking.
+
 = 3.6.0 =
 * July 1st 2026
-* New: country-level geolocation (GeoIP country tracking) is now available in the free plugin.
+* New: country-level geolocation (GeoIP country tracking).
 * New: WordPress Search Terms block: see what your visitors are looking for on your site.
 * New: "All goals" option in the dashboard Goals block.
 * New: AI Chat model selector: select your preferred model.
 * New: WP Consent API notice task that detects whether the Consent API is active.
 * Improvement: redesigned, unified tooltips with theme-consistent styling, high-contrast borders and improved readability.
 * Improvement: rows-per-page selection is now persisted per datatable.
-* Improvement: MaxMind GeoLite2 attribution.
 * Improvement: query and database performance improvements.
 * Improvement: updated bundled libraries.
-* Fix: prevent errors caused by the external link tracking class loading on the free plugin.
-* Fix: check open_basedir restrictions on the session save path to prevent warnings.
+* Fix: prevent errors caused by the external link tracking class loading on the free plugin, props @dragon013.
+* Fix: check open_basedir restrictions on the session save path to prevent warnings, props @jstark55.
 * Fix: date picker and Reading Engagement UI layout, stacking, overflow and scroll-lock issues on mobile and tablet.
-* Fix: country database tracking lookup on fresh installs and correct resolution of country placeholder rows.
 * Fix: browser detection cleanup.
+* Fix: stricter match on AI plugins in REST API optimizer to prevent loading plugins only based on 'ai' string in slug, props @nicolas-cuny.
+* Fix: first hit is no longer missed when Ghost mode and Turbo mode are combined.
 
 = 3.5.1 =
 * June 17th 2026
