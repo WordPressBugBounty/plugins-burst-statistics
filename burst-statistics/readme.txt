@@ -6,7 +6,7 @@ Requires at least: 6.6
 License: GPL2
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 3.7.4
+Stable tag: 3.7.5
 
 Simple, lightweight WordPress analytics with privacy-friendly visitor tracking. Cookieless and GDPR-ready. Setup in seconds, no cookie banner needed.
  
@@ -295,6 +295,25 @@ Yes. Both the free and premium plugins can be managed with Composer. Read the [C
 We value your feedback. You can [submit a support request on the WordPress forums](https://wordpress.org/support/plugin/burst-statistics/), and we will respond promptly.
 
 == Change log ==
+= 3.7.5 =
+* November 11th 2026
+* New: the Goals page is now a goals dashboard. Pick a goal to see its conversions, converting visitors and conversion rate compared with the previous period, its trend and where its conversions come from. The trend chart greys out the time a goal was not active, and a filter icon opens Insights filtered by the goal.
+* New: Burst warns you when a goal stops counting: it converted before, but not in the last 14 days while its page still had visitors.
+* New: file download and custom event goals.
+* New: track file downloads automatically as custom events. Turn it on under Settings > Features.
+* New: an Opt out of tracking block and the [burst_opt_out] shortcode give visitors a button to opt out of Burst tracking, and to opt back in.
+* New: high-traffic buffer mode writes incoming hits to disk first and adds them to the database in batches in the background, to lower the database load on busy sites. Turn it on under Settings > Advanced. Burst recommends it once your busiest hour reaches 3,000 pageviews.
+* New: MainWP reports can include Burst statistics through reporting tokens.
+* Security: a shared report link now only shows statistics from the period of the report, props Raphael P. Cigana.
+* Security: Burst only skips other plugins on requests that run a Burst REST route, so plugins that restrict REST access stay active on every other route, props Filip Kowalski.
+* Security: the most visited and top pages shortcodes no longer show the titles of draft or private posts, props Karthik Ramakrishnan.
+* Improvement: time on page is measured by Burst's own timer instead of the TimeMe library, so visitors load one script less.
+* Improvement: the tracking script no longer reads the visitor's screen resolution, which Burst did not store.
+* Improvement: an unchanged value shows as a grey 0% instead of a red rise.
+* Improvement: the articles on the dashboard come with each plugin update, so the dashboard no longer downloads them once a month.
+* Fix: visitors who send Global Privacy Control were tracked while "Respect Do Not Track" was on.
+* Fix: AI assistants connected through an MCP plugin with its own endpoint could not use the Burst abilities.
+
 = 3.7.4 =
 * October 29th 2026
 * New: a Burst panel in the post editor shows how a post performs: pageviews, visitors, bounce rate, time on page, an engagement score and where visitors come from.
@@ -307,7 +326,7 @@ We value your feedback. You can [submit a support request on the WordPress forum
 * Improvement: the data sharing opt-in explains more clearly what you share and what you get in return.
 * Improvement: Burst stores its internal admin data in a few grouped database options instead of dozens of separate ones.
 * Improvement: database tables are only upgraded when their structure changed, and Burst shows a notice when a table upgrade could not be completed.
-* Security: rest api optimizer hardening, props Mateusz Będziński.
+* Security: rest api optimizer improvements, props Mateusz Będziński.
 * Fix: the insights chart shifted all days by one when the date range crossed a daylight saving time change: the first day showed 0 and every other day showed the numbers of the day before.
 * Fix: on hosts with a read-only plugin folder the articles block on the dashboard came back empty with a PHP warning.
 * Fix: some Burst abilities returned an error or rows without the page or referrer they belonged to when an AI assistant requested them.
